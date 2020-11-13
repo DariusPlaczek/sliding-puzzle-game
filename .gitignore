@@ -10,6 +10,7 @@
 
 # production
 /build
+/oldApp.js
 
 # misc
 .DS_Store

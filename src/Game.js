@@ -1,7 +1,36 @@
 import React, {useState, useEffect} from 'react';
+//import {DataList} from './Data';
 import {randomArray} from './Data';
-import Musik from './Musik'
+import AudioPlayer from 'react-modular-audio-player';
 import './App.css';
+
+let playlist = [
+	{
+		src: "https://jsons.darius-design.de/Musik/Playlist-BestofMay2020/001-1765024-AllMyFriendsHateMe-Blood.mp3",
+		title: "All My FriendsHate Me",
+		artist: "Blood"
+	},
+	{
+		src: "https://jsons.darius-design.de/Musik/Playlist-BestofMay2020/002-1766006-RENAE-ThroughMyEyes_Gemini_.mp3",
+		title: "Through My Eyes Gemini",
+		artist: "RENAE"
+	},
+	{
+		src: "https://jsons.darius-design.de/Musik/Playlist-BestofMay2020/003-1765026-TheDevilMusicCo-HeadOverHeels.mp3",
+		title: "The Devil Music Co",
+		artist: "Head Over Heels"
+	},
+	{
+		src: "https://jsons.darius-design.de/Musik/Playlist-BestofMay2020/004-1753299-AlfonsoLugo-QueAqui_EstoyYo.mp3",
+		title: "Que Aqui Estoy Yo",
+		artist: "Alfonso Lugo"
+	}
+	
+];
+//let forNumber = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14];
+//let newNumber = [15,];
+
+
 
 function App() {
 
@@ -11,14 +40,13 @@ function App() {
 
 	const [copyImage, setCopyImage] = useState();
 	const [draggableTrue, setDraggableTrue] = useState(true);
-	const [start, setStart] = useState(false)
 
 	const [helpOn, setHelpOn] = useState(false)
 	const [moveCount, setMoveCount] = useState(0)
 	const [seconds, setSeconds] = useState(null);
 	const [minutes, setMinutes] = useState(null);
-	const [letTime, setLetTime] = useState()
-	const [winning, setWinning] = useState(false);
+	const [letTime] = useState(new Date().getTime())
+//	const [numbers, setNumbers] = useState()
 
 	const [states] = useState({
 		0: [1, 4],
@@ -39,6 +67,17 @@ function App() {
 		15: [11, 14]
 	})
 
+	//useEffect(() => {
+	
+	//	for (let i = 0; i < 15; i++) {
+	//		const randomNumber = Math.floor(Math.random() * Math.floor(forNumber.length));
+	//		const trash = forNumber.splice(randomNumber, 1);
+	//		newNumber.unshift(trash[0])
+	//	}
+	//	setNumbers(newNumber)
+		
+	//}, [])
+
 	useEffect(() => {
 		const searchForTrue = falseOrTrue.indexOf(true)
 		const copyOfDraggable = draggable.slice();
@@ -51,98 +90,42 @@ function App() {
 			setDraggableTrue(false);
 		}
 
+	
 	}, [falseOrTrue, states, draggable, draggableTrue])
 
 	useEffect(function time() {
 	
-		if (start && !winning) {
-			const updatedTime = new Date().getTime();
-			const nowTime = updatedTime - letTime;
-			const sec = ("0" + (Math.floor(nowTime / 1000) % 60)).slice(-2);
-			const min = ("0" + (Math.floor(nowTime / 60000) % 60)).slice(-2);
+		const updatedTime = new Date().getTime();
+		const nowTime = updatedTime - letTime;
+		const sec = ("0" + (Math.floor(nowTime / 1000) % 60)).slice(-2);
+		const min = ("0" + (Math.floor(nowTime / 60000) % 60)).slice(-2);
+
+			const clock = setInterval(() => {	
+				setSeconds(sec);
+				setMinutes(min);
+			}, 1000);
+			
+			return () => clearInterval(clock);
 	
-				const clock = setInterval(() => {	
-					setSeconds(sec);
-					setMinutes(min);
-				}, 1000);
-				
-				return () => clearInterval(clock);
-		} 
+}, [seconds, minutes, letTime]);
 	
-	}, [seconds, minutes, letTime, start, winning]);
-
-
-	useEffect(() => {
-		
-		if (start) {
-			setLetTime(new Date().getTime())
-		}
-
-	}, [start])
-
-
-	useEffect(() => {
-
-		if ( image[0].id === 0 && 
-			 image[1].id === 1 && 
-			 image[2].id === 2 && 
-			 image[3].id === 3 && 
-			 image[4].id === 4 && 
-			 image[5].id === 5 && 
-			 image[6].id === 6 &&
-			 image[7].id === 7 &&
-			 image[8].id === 8 &&
-			 image[9].id === 9 &&
-			 image[10].id === 10 &&
-			 image[11].id === 11 &&
-			 image[12].id === 12 &&
-			 image[13].id === 13 &&
-			 image[14].id === 14 &&
-			 image[15].id === 15 ) {
-				setWinning(true)
-		}
-	}, [image, winning]);
-	
-
 	function onDrop(event) {
 		event.preventDefault();
 
 		if (falseOrTrue[event.target.id]) {
 			setFalseOrTrue(falseOrTrue.fill(false))
-			setStart(true);
 			setMoveCount(moveCount + 1)
 			const copyOfImageArray = image.slice();
 			const copyTrue = falseOrTrue.slice();
 
 			copyOfImageArray.splice(event.target.id, 1, image[copyImage]);
 			copyOfImageArray.splice(copyImage, 1, image[event.target.id])
-			
+	
 			copyTrue.splice(copyImage, 1, true);
+
 			setDraggable(Array(16).fill(false))
 			setImage(copyOfImageArray);
 			setFalseOrTrue(copyTrue);
-			setDraggableTrue(true);
-		}
-	}
-
-	function onClicks(event) {
-
-		if (draggable[event.target.id]) {
-			setStart(true);
-			setMoveCount(moveCount + 1)
-			const searchForTrue = falseOrTrue.indexOf(true)
-			const copyOfImageArray = image.slice();
-			setFalseOrTrue(falseOrTrue.fill(false));
-			const copyTrues = falseOrTrue.slice();
-			
-			copyOfImageArray.splice(event.target.id, 1, image[searchForTrue])
-			copyOfImageArray.splice(searchForTrue, 1, image[event.target.id])
-			
-			copyTrues.splice(event.target.id, 1, true);
-			
-			setDraggable(Array(16).fill(false))
-			setImage(copyOfImageArray);
-			setFalseOrTrue(copyTrues);
 			setDraggableTrue(true);
 		}
 	}
@@ -168,9 +151,7 @@ function App() {
 			  <h1>{minutes}:{seconds}</h1>
 			</div>
 
-
 			<div className="game-column">
-			{!winning ? <>
 			{image.map((index, key) => 
 				<div className="quader" 
 					key={index.key} 
@@ -178,21 +159,19 @@ function App() {
 					onDrop={event => onDrop(event)} 
 					onDragOver={event => onDragOver(event)} 
 					draggable={draggable[key]} 
-					onClick={event => onClicks(event)}
 					onDragStart={event => onDragStart(event)} >
 						<img className="cards" 
 							draggable={draggable[key]} 
 							id={key} 
-							alt="Sliding-Puzzle" 
+							alt={key} 
 							src={index.img} 
 						/>
 
 						{helpOn ? <p>{index.id+1}</p> : ''}
+						
 				</div>
-			)} 
-			</>: <div className="winner"><h4>congratulations</h4><h3>you won</h3></div> }
+			)}
 			</div>
-			
 			<div className="move-count">
 				<h5>Move Count</h5>
 				<h1>{moveCount}</h1>
@@ -201,8 +180,7 @@ function App() {
 
 		<div className="help-number">
 			<div className="musik-player">
-				{/*<AudioPlayer audioFiles={playlist} hideLoop={true}/>*/}
-				<Musik></Musik>
+				<AudioPlayer audioFiles={playlist} hideLoop={true}/>
 			</div>
 			<div className="switch">
 				<h6>Help Numbers</h6>
@@ -211,6 +189,7 @@ function App() {
 				</form>
 			</div>
 		</div>
+
 	</div>
 	);
 }
