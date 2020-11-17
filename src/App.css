@@ -1,30 +1,30 @@
 
 @font-face {
 	font-family: 'Spartan';
-    src: url('./Font/Spartan-Light.eot');
-    src: url('./Font/Spartan-Light.eot?#iefix') format('embedded-opentype'),
-	url('./Font/Spartan-Light.woff2') format('woff2'),
-	url('./Font/Spartan-Light.woff') format('woff');
+    src: url('./Components/Font/Spartan-Light.eot');
+    src: url('./Components/Font/Spartan-Light.eot?#iefix') format('embedded-opentype'),
+	url('./Components/Font/Spartan-Light.woff2') format('woff2'),
+	url('./Components/Font/Spartan-Light.woff') format('woff');
     font-weight: 300;
     font-display: swap;
 }
 
 @font-face {
 	font-family: 'Spartan';
-    src: url('./Font/Spartan-Regular.eot');
-    src: url('./Font/Spartan-Regular.eot?#iefix') format('embedded-opentype'),
-	url('./Font/Spartan-Regular.woff2') format('woff2'),
-	url('./Font/Spartan-Regular.woff') format('woff');
+    src: url('./Components/Font/Spartan-Regular.eot');
+    src: url('./Components/Font/Spartan-Regular.eot?#iefix') format('embedded-opentype'),
+	url('./Components/Font/Spartan-Regular.woff2') format('woff2'),
+	url('./Components/Font/Spartan-Regular.woff') format('woff');
     font-weight: normal;
     font-display: swap;
 }
 
 @font-face {
 	font-family: 'Spartan';
-	src: url('./Font/Spartan-Medium.eot');
-	src: url('./Font/Spartan-Medium.eot?#iefix') format('embedded-opentype'),
-		url('./Font/Spartan-Medium.woff2') format('woff2'),
-		url('./Font/Spartan-Medium.woff') format('woff');
+	src: url('./Components/Font/Spartan-Medium.eot');
+	src: url('./Components/Font/Spartan-Medium.eot?#iefix') format('embedded-opentype'),
+		url('./Components/Font/Spartan-Medium.woff2') format('woff2'),
+		url('./Components/Font/Spartan-Medium.woff') format('woff');
 	font-weight: 500;
 	font-style: normal;
 	font-display: swap;
@@ -32,20 +32,20 @@
 
 @font-face {
     font-family: 'Spartan';
-    src: url('./Font/Spartan-SemiBold.eot');
-    src: url('./Font/Spartan-SemiBold.eot?#iefix') format('embedded-opentype'),
-        url('./Font/Spartan-SemiBold.woff2') format('woff2'),
-        url('./Font/Spartan-SemiBold.woff') format('woff');
+    src: url('./Components/Font/Spartan-SemiBold.eot');
+    src: url('./Components/Font/Spartan-SemiBold.eot?#iefix') format('embedded-opentype'),
+        url('./Components/Font/Spartan-SemiBold.woff2') format('woff2'),
+        url('./Components/Font/Spartan-SemiBold.woff') format('woff');
     font-weight: 600;
     font-display: swap;
 }
 
 @font-face {
     font-family: 'Spartan';
-    src: url('./Font/Spartan-ExtraBold.eot');
-    src: url('./Font/Spartan-ExtraBold.eot?#iefix') format('embedded-opentype'),
-        url('./Font/Spartan-ExtraBold.woff2') format('woff2'),
-        url('./Font/Spartan-ExtraBold.woff') format('woff');
+    src: url('./Components/Font/Spartan-ExtraBold.eot');
+    src: url('./Components/Font/Spartan-ExtraBold.eot?#iefix') format('embedded-opentype'),
+        url('./Components/Font/Spartan-ExtraBold.woff2') format('woff2'),
+        url('./Components/Font/Spartan-ExtraBold.woff') format('woff');
     font-weight: 800;
     font-display: swap;
 }
