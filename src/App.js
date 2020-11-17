@@ -54,26 +54,24 @@ function App() {
 	}, [falseOrTrue, states, draggable, draggableTrue])
 
 	useEffect(function time() {
-	
 		if (start && !winning) {
 			const updatedTime = new Date().getTime();
 			const nowTime = updatedTime - letTime;
 			const sec = ("0" + (Math.floor(nowTime / 1000) % 60)).slice(-2);
 			const min = ("0" + (Math.floor(nowTime / 60000) % 60)).slice(-2);
-	
-				const clock = setInterval(() => {	
+
+				const clock = setInterval(() => {
 					setSeconds(sec);
 					setMinutes(min);
 				}, 1000);
-				
 				return () => clearInterval(clock);
-		} 
-	
+		}
+
 	}, [seconds, minutes, letTime, start, winning]);
 
 
 	useEffect(() => {
-		
+
 		if (start) {
 			setLetTime(new Date().getTime())
 		}
@@ -83,12 +81,12 @@ function App() {
 
 	useEffect(() => {
 
-		if ( image[0].id === 0 && 
-			 image[1].id === 1 && 
-			 image[2].id === 2 && 
-			 image[3].id === 3 && 
-			 image[4].id === 4 && 
-			 image[5].id === 5 && 
+		if ( image[0].id === 0 &&
+			 image[1].id === 1 &&
+			 image[2].id === 2 &&
+			 image[3].id === 3 &&
+			 image[4].id === 4 &&
+			 image[5].id === 5 &&
 			 image[6].id === 6 &&
 			 image[7].id === 7 &&
 			 image[8].id === 8 &&
@@ -102,7 +100,6 @@ function App() {
 				setWinning(true)
 		}
 	}, [image, winning]);
-	
 
 	function onDrop(event) {
 		event.preventDefault();
@@ -116,7 +113,7 @@ function App() {
 
 			copyOfImageArray.splice(event.target.id, 1, image[copyImage]);
 			copyOfImageArray.splice(copyImage, 1, image[event.target.id])
-			
+
 			copyTrue.splice(copyImage, 1, true);
 			setDraggable(Array(16).fill(false))
 			setImage(copyOfImageArray);
@@ -134,23 +131,23 @@ function App() {
 			const copyOfImageArray = image.slice();
 			setFalseOrTrue(falseOrTrue.fill(false));
 			const copyTrues = falseOrTrue.slice();
-			
+
 			copyOfImageArray.splice(event.target.id, 1, image[searchForTrue])
 			copyOfImageArray.splice(searchForTrue, 1, image[event.target.id])
-			
+
 			copyTrues.splice(event.target.id, 1, true);
-			
+
 			setDraggable(Array(16).fill(false))
 			setImage(copyOfImageArray);
 			setFalseOrTrue(copyTrues);
 			setDraggableTrue(true);
 		}
 	}
-		
+
 	function onDragOver(event) {
 		event.preventDefault();
 	}
-		
+
 	function onDragStart(event) {
 		setCopyImage(event.target.id)
 	}
@@ -171,28 +168,28 @@ function App() {
 
 			<div className="game-column">
 			{!winning ? <>
-			{image.map((index, key) => 
-				<div className="quader" 
-					key={index.key} 
-					id={index.id} 
-					onDrop={event => onDrop(event)} 
-					onDragOver={event => onDragOver(event)} 
-					draggable={draggable[key]} 
+			{image.map((index, key) =>
+				<div className="quader"
+					key={index.key}
+					id={index.id}
+					onDrop={event => onDrop(event)}
+					onDragOver={event => onDragOver(event)}
+					draggable={draggable[key]}
 					onClick={event => onClicks(event)}
 					onDragStart={event => onDragStart(event)} >
-						<img className="cards" 
-							draggable={draggable[key]} 
-							id={key} 
-							alt="Sliding-Puzzle" 
-							src={index.img} 
+						<img className="cards"
+							draggable={draggable[key]}
+							id={key}
+							alt="Sliding-Puzzle"
+							src={index.img}
 						/>
 
 						{helpOn ? <p>{index.id+1}</p> : ''}
 				</div>
-			)} 
+			)}
 			</>: <div className="winner"><h4>congratulations</h4><h3>you won</h3></div> }
 			</div>
-			
+
 			<div className="move-count">
 				<h5>Move Count</h5>
 				<h1>{moveCount}</h1>
@@ -201,7 +198,6 @@ function App() {
 
 		<div className="help-number">
 			<div className="musik-player">
-				{/*<AudioPlayer audioFiles={playlist} hideLoop={true}/>*/}
 				<Musik></Musik>
 			</div>
 			<div className="switch">

@@ -91,7 +91,6 @@ function random() {
 		const randomNumber = Math.floor(Math.random() * Math.floor(forNumber.length));
 		const trash = forNumber.splice(randomNumber, 1);
 		newNumber.unshift(trash[0])
-		
 		randomArray.pop(DataList[newNumber])
 	}
 
@@ -99,11 +98,9 @@ function random() {
 		for (let j = 0; j < 16; j++) {
 			randomArray.push(DataList[newNumber[j]])
 		}
-		
 	}
 }
 
 random();
 
 export {randomArray};
-//export {DataList};

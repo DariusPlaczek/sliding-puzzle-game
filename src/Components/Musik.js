@@ -4,48 +4,11 @@ import AudioPlayer from 'react-modular-audio-player';
 class Musik extends Component {
   constructor(props) {
     super(props);
-
-    this.state = { 
-	//  track01: null,
-	//  track02: null,
-	//  track03: null,
-	//  track04: null,
-	//  track05: null,
-	//  track06: null,
-	//  track07: null,
-	//  track08: null,
-	//  track09: null,
-	//  track10: null,
-	//  isLoaded: true,
+    this.state = {
 	  playlist: [],
-	  
     };
   }
-
-	//async componentDidMount() {
-	//	const url = "https://api-music.icons8.com/api/v2/tracks?genres=Guitar&perPage=20&token=my4i1wRKyMd6JJBWo2EVGj89zO6Ic74I2yueatHb";
-	//	const response = await fetch(url);
-	//	const data = await response.json();
-		
-	//	this.setState({
-	//		isLoaded: false,
-	//		track01: data.tracks[2].preview.url,
-	//		track02: data.tracks[1].preview.url,
-	//		track03: data.tracks[3].preview.url,
-	//		track04: data.tracks[0].preview.url,
-	//		track05: data.tracks[5].preview.url,
-	//		track06: data.tracks[4].preview.url,
-	//		track07: data.tracks[6].preview.url,
-	//		track08: data.tracks[10].preview.url,
-	//		track09: data.tracks[11].preview.url,
-	//		track10: data.tracks[16].preview.url
-
-	//	})
-	//}
-
   render() {
-	//const {isLoaded} = this.state;
-
 	this.playlist = [
 		{
 			src: "https:///jsons.darius-design.de/Musik/Games/Scott_Holmes_-_08_-_Motivational.mp3",
@@ -111,10 +74,9 @@ class Musik extends Component {
 	]
 
 	return (
-		
 		<>
 		  <AudioPlayer audioFiles={this.playlist} hideLoop={true}/>
-		</>   
+		</>
       );
     }
 }
