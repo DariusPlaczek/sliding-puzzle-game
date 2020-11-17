@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
-import {randomArray} from './Data';
-import Musik from './Musik'
+import {randomArray} from './Components/Data';
+import Musik from './Components/Musik'
 import './App.css';
 
 function App() {
