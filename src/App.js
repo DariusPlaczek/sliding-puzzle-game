@@ -81,24 +81,14 @@ function App() {
 
 	useEffect(() => {
 
-		if ( image[0].id === 0 &&
-			 image[1].id === 1 &&
-			 image[2].id === 2 &&
-			 image[3].id === 3 &&
-			 image[4].id === 4 &&
-			 image[5].id === 5 &&
-			 image[6].id === 6 &&
-			 image[7].id === 7 &&
-			 image[8].id === 8 &&
-			 image[9].id === 9 &&
-			 image[10].id === 10 &&
-			 image[11].id === 11 &&
-			 image[12].id === 12 &&
-			 image[13].id === 13 &&
-			 image[14].id === 14 &&
-			 image[15].id === 15 ) {
+		for (const key in image) {
+			if (image[key]=== key) {
 				setWinning(true)
+				return
+			}
+			return
 		}
+
 	}, [image, winning]);
 
 	function onDrop(event) {
